@@ -1,0 +1,110 @@
+/* Header container */
+.Header {   
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: transparent;
+    padding: 14px 20px;
+    z-index: 10;
+
+}
+    
+    /* LOGO DONE */
+    .CAC_max {
+        /* Adjust the size as needed width: 600px;*/
+        align-items: center;
+        display:flex
+    }
+  
+    
+    .CAC_img{
+        margin-top: 10%;
+        margin-left: 40%; 
+        width: 75px;
+        cursor: pointer;
+  
+    }
+  
+  
+  
+    /* Navigation */
+    .Navigation {
+        list-style: none;
+        display: flex;
+        margin-left: auto; 
+        padding-right: 3%;
+  
+    }
+  
+    .Navigation ul{
+        list-style-type: none;
+    }
+    
+    
+    .Navigation li {
+        display: inline-block;
+        padding: 0px 24px;
+        color: white;
+        transition: color 0.3s ease;
+        font-weight:600
+    }
+    
+    .Navigation a {
+        font-size: 18px;
+        text-decoration: none;
+        color: white;
+        font-weight: 400;
+    }
+
+    .Navigation a:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    
+
+
+    /* Styling the dropdown */
+    .dropdown {
+        position: relative;
+        display: inline-block;  
+        text-align: center;  
+    }
+  
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: transparent;
+        min-width: 100%;
+        z-index: 1;
+        color: white;
+        text-align: center;
+
+        
+    }
+  
+    
+    
+    .dropdown-menu a {
+        font-size: 16px;
+        display: block;
+        padding: 8px 0px;
+        white-space: nowrap;
+    
+    }
+
+    /* Display the dropdown menu on hover */
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+
+
+    

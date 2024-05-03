@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Tenor+Sans&display=swap');
+
+.Hero {
+    display: flex;
+    height: 100vh; 
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../ottawa.jpg');
+    background-size: cover;
+    background-position: center center; 
+}
+
+/* filter of BG image */
+.Hero::before {
+    content: "";
+    height: 100%; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2); /* white filter */
+    z-index: 1;
+}
+
+.hero_container {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    height: 60%;
+    width: 96%;
+    padding: 30px 30px;
+    /* background-color: white; */
+}
+
+.text_container {
+    width: 34%;
+    height: 100%;
+    margin: 0px 10px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: 300;
+    display: flex;
+    z-index: 3;
+    
+    /* background-color: blueviolet; */
+    text-shadow: 
+        -3px -3px 5px rgba(0, 0, 0, 0.15),
+        -3px 3px 5px rgba(0, 0, 0, 0.15),
+        3px -3px 5px rgba(0, 0, 0, 0.15),
+        3px 3px 5px rgba(0, 0, 0, 0.15);
+}
+
+.text_name_en {
+    padding: 0px 10px;
+    font-size: 76px;
+    color: white;
+    text-align: center;
+    white-space: nowrap;    /* 防止文本换行 */
+    letter-spacing: 0px;    /* 字符间距 */
+    font-family: 'Tenor Sans', sans-serif; 
+    transform: scale(1,1.18)   
+}
+.text_name_ch {
+    padding: 0px 10px;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: 6px;    
+}   
+.text_about_paragraph {
+    display: flex;
+    width: 80%;
+    padding: 10px 10px;
+    margin-top: 3%;
+    font-size: 16px;
+    color: white;
+    text-align: left;
+    align-items: center;
+    line-height: 2;
+
+}
+
+/* Here is styles of image carousel  */
+.carousel_container {
+    /* background-color: blueviolet; */
+    width: 66%;
+    height: 100%;
+    margin-right: 10px;
+    display: flex; /* 使用Flex布局 */
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+
+
+
+
+
+.item {
+    position: absolute; /* 使用绝对定位 */
+    transform: translate(-50%, -50%); 
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: height 1s, width 1s, left 1s, margin-top 1s, line-height 1s, background-color 1s;
+}
+
+.level-1 {
+    height: auto;
+    width: 40%;
+    background-color: #6796E5;
+    left: 25%;
+    object-fit: cover;
+}
+
+.level0 {
+    height: auto;
+    width: 50%;
+    background-color: #4EC9E1;
+    left: 50%;
+    z-index: 10;
+    object-fit: cover;
+}
+
+.level1 {
+    height: auto;
+    width: 40%;
+    background-color: #6796E5;
+    left: 75%;
+    object-fit: cover;
+}
+
+.level-1::before,
+.level1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.25); /* 半透明白色背景 */
+}
+
+
+.left-enter, .right-enter, .left-leave, .right-leave {
+    opacity: 0;
+    transform: translateX(100%); /* 从右侧进入或离开 */
+}
+
+.left-enter.left-enter-active, .right-enter.right-enter-active {
+    opacity: 1;
+    transform: translateX(0); /* 平移到原始位置 */
+    transition: left 1s, opacity 1s, height 1s, width 1s, margin-top 1s, line-height 1s;
+}
