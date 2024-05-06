@@ -28,6 +28,7 @@ const Header = () => {
                 </ul>
             </li>
             <li><a href="/pageview">View</a></li>
+            <li><a href="/login">Login</a></li>
         </ul>
         
     </nav>

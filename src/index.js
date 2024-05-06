@@ -9,6 +9,9 @@ import Tripdelete from './pages/Tripdelete.tsx';
 import Tripupdate from './pages/Tripupdate.tsx';
 import Selection from './pages/Selection.tsx';
 import Pageview from './pages/Pageview.tsx'
+import Auth from './pages/authentication/Auth.tsx';
+import Signup from './pages/authentication/Signup.tsx';
+import ErrorPage from './pages/404/404.tsx';
 
 export default function App() {
   return (
@@ -21,6 +24,9 @@ export default function App() {
         <Route path="delete" element={<Tripdelete />} />
         <Route path="update" element={<Tripupdate />} />
         <Route path="pageview" element={<Pageview />} />
+        <Route path='login' element ={<Auth/>}/>
+        <Route path='signup' element ={<Signup/>}/>
+        <Route path='404' element ={<ErrorPage/>}/>
       </Routes>
     </BrowserRouter>
   );
