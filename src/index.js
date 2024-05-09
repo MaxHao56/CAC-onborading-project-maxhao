@@ -13,7 +13,9 @@ import Auth from './pages/authentication/Auth.tsx';
 import Signup from './pages/authentication/Signup.tsx';
 import ErrorPage from './pages/404/404.tsx';
 
+
 export default function App() {
+
   return (
     <BrowserRouter>
       <Routes>
@@ -27,6 +29,7 @@ export default function App() {
         <Route path='login' element ={<Auth/>}/>
         <Route path='signup' element ={<Signup/>}/>
         <Route path='404' element ={<ErrorPage/>}/>
+        
       </Routes>
     </BrowserRouter>
   );

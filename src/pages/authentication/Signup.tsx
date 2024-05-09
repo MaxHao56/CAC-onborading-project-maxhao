@@ -14,6 +14,9 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 
+import { useNavigate } from 'react-router-dom';
+
+
 
 function Copyright(props: any) {
     return (
@@ -28,40 +31,40 @@ function Copyright(props: any) {
     );
 }
       
-
       
 export default function Signup() {
+
+const navigate = useNavigate()
+
 const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
     const username = data.get('username');
-    const email_address=  data.get('email');
+    const email=  data.get('email');
     const password = data.get('password');
 
     const user_info = {
         'username' : username,
-        'email_adress' : email_address,
+        'email' : email,
         'password' : password
     }
 
-    axios.post('http://127.0.0.1:8000/api/', {
+    axios.post('http://127.0.0.1:8000/api/register', {
         'username': username,
-        'email_address': email_address,
+        'email': email,
         'password': password
     }).then((response) => {
+       
         console.log(response);
+        navigate('/login')
+        
     }, (error) => {
         console.log(error);
     });
     
-
-    
-
-  
-
-
 };
+
 
 const defaultTheme = createTheme();
 
@@ -148,7 +151,7 @@ return (
                 </Link>
                 </Grid>
                 <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="login" variant="body2">
                     {"Already have an account? Sign In"}
                 </Link>
                 </Grid>
@@ -159,6 +162,7 @@ return (
         </Grid>
     </Grid>
     </ThemeProvider>
+
 );
 }
 

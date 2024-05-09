@@ -13,6 +13,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function Copyright(props: any) {
@@ -31,28 +33,48 @@ function Copyright(props: any) {
 
       
 export default function Auth() {
+
+const [sessionData, setSessionData] = useState(null)
+const navigate = useNavigate()
+
+
 const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
     const username = data.get('username');
-    const email_address=  data.get('email');
+    const email=  data.get('email');
     const password = data.get('password');
 
     const user_info = {
         'username' : username,
-        'email_adress' : email_address,
+        'email' : email,
         'password' : password
     }
 
-    axios.post('http://127.0.0.1:8000/api/', {
-        'username': username,
-        'email_address': email_address,
-        'password': password
-    }).then((response) => {
+    axios.post('http://127.0.0.1:8000/api/login', user_info)
+    .then((response) => {
         console.log(response);
+        const responseData = response.data
+        if (responseData) {
+            // Assuming responseData is an object
+            sessionStorage.setItem('sessionData', JSON.stringify(responseData));
+            setSessionData(responseData);
+            navigate('/')    
+
+            // axios.post('http://127.0.0.1:8000/api/user',responseData)
+            // .then((response)=>{
+            //     console.log(response)
+            //     const username = response.data.username;
+            //     document.cookie=`username=${username}`
+            // })
+        } else {
+            console.error('Response data is empty.');
+            
+        }
     }, (error) => {
         console.log(error);
+        navigate('/404')
     });
     
 
@@ -148,7 +170,7 @@ return (
                 </Link>
                 </Grid>
                 <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="signup" variant="body2">
                     {"Don't have an account? Sign Up"}
                 </Link>
                 </Grid>

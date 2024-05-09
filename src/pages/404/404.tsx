@@ -1,5 +1,6 @@
 import React from 'react'
 import '../404/error.css'
+import { Link } from '@mui/material'
 
 export default function ErrorPage(){
   return (
@@ -19,7 +20,7 @@ export default function ErrorPage(){
     <div className="error__title">404</div>
     <div className="error__subtitle">Hmmm...</div>
     <div className="error__description">It looks like one of the  developers fell asleep</div>
-    <button className="error__button error__button--active">LOGIN</button>
+    <button className="error__button error__button--active"><Link href='/'>LOGIN</Link></button>
     <button className="error__button">CONTACT</button>
     </div>
 
