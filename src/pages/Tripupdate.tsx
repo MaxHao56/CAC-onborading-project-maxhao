@@ -204,7 +204,7 @@ export default function Tripupdate() {
                   required
                   fullWidth
                   id="firstName"
-                  label="First Name"
+                  label="Importance"
                   autoFocus
                 />
               </Grid>
@@ -213,7 +213,7 @@ export default function Tripupdate() {
                   required
                   fullWidth
                   id="lastName"
-                  label="Last Name"
+                  label="Duration"
                   name="lastName"
                   autoComplete="family-name"
                 />
@@ -223,7 +223,7 @@ export default function Tripupdate() {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="Address"
                   name="email"
                   autoComplete="email"
                 />
@@ -233,7 +233,7 @@ export default function Tripupdate() {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="Reason"
                   type="password"
                   id="password"
                   autoComplete="new-password"

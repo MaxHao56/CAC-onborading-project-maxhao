@@ -94,10 +94,38 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+
+
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function Tripcreation() {
+
+
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) =>{
+    event.preventDefault();
+    const mapdata = new FormData(event.currentTarget);
+
+    const streetnumber  = mapdata.get('StreetNumber');
+    const streetname = mapdata.get('StreetName');
+    const durationtime = mapdata.get('durationtime');
+    const importance = mapdata.get('importance')
+
+    const mapinfor = {
+      'street': `${streetname} ${streetnumber}`,
+      'durationtime': durationtime,
+      'importance': importance
+
+    }
+
+    console.log(mapinfor)
+  }
+
+
+
+
+
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -194,17 +222,17 @@ export default function Tripcreation() {
           <Typography component="h1" variant="h5">
             Trip-Creation-Form
           </Typography>
-          <Box component="form" noValidate  sx={{ mt: 3 }}>
+          <Box component="form" noValidate  sx={{ mt: 3 }} onClick={handleSubmit}>
           {/* onSubmit={handleSubmit} */}
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="StreetNumber"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="streenumber"
+                  label="Street Number"
                   autoFocus
                 />
               </Grid>
@@ -212,9 +240,9 @@ export default function Tripcreation() {
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
+                  id="StreetName"
+                  label="Street Name"
+                  name="StreetName"
                   autoComplete="family-name"
                 />
               </Grid>
@@ -223,8 +251,8 @@ export default function Tripcreation() {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
-                  name="email"
+                  label="durationtime"
+                  name="durationtime"
                   autoComplete="email"
                 />
               </Grid>
@@ -232,9 +260,9 @@ export default function Tripcreation() {
                 <TextField
                   required
                   fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
+                  name="importance"
+                  label="importance"
+                  // type="password"
                   id="password"
                   autoComplete="new-password"
                 />
@@ -246,6 +274,7 @@ export default function Tripcreation() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              
             >
               Sumbit
             </Button>

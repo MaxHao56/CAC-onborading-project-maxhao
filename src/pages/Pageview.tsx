@@ -19,7 +19,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 // import NotificationsIcon from '@mui/icons-material/Notifications';
 import { MainListItems,SecondaryListItems } from '../component/functional/dashboardlist/dashboradlist.tsx';
 
-
+import { useState, useEffect } from 'react';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -106,6 +106,16 @@ export default function Pageview() {
     setOpen(!open);
   };
 
+  const [locations, setLocations] = useState<Location[]>([])
+
+  useEffect(() => {
+    fetch('http://your-django-backend-url/location-list/')
+        .then(response => response.json())
+        .then(data => setLocations(data))
+        .catch(error => console.error('Error fetching data:', error));
+}, []);
+
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
@@ -179,7 +189,13 @@ export default function Pageview() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-
+          {/* {locations.map(location => (
+                        <tr key={location.streetname}>
+                            <td>{location.streetname}</td>
+                            <td>{location.durationtime}</td>
+                            <td>{location.importance}</td>
+                        </tr>
+                    ))} */}
             
 
 

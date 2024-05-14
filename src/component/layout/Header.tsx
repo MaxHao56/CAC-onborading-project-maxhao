@@ -58,16 +58,16 @@ export default function Header(){
             
             <>
             <button onClick={logout}>Logout</button>
-            <li><a href="/home">Home</a></li>
+            <li><a href="/home">Map</a></li>
             <li className="dropdown">
-                <a href="selection">Selection</a>
+                <a href="pageview">Selection</a>
                 <ul className="dropdown-menu">
                     <li><a href="/creation">Creation</a></li>
                     <li><a href="/delete">Update</a></li>
                     <li><a href="/update">Delete</a></li>
                 </ul>
             </li>
-            <li><a href="/pageview">View</a></li>
+
             </>
    
             ) : null}
