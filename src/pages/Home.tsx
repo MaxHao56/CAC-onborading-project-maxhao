@@ -12,9 +12,9 @@ import 'leaflet/dist/leaflet.css';
 
 
 const coordinates: number[][] = [
-  [44.229852, -76.519158],
-  [44.237066, -76.502592],
-  [44.230088, -76.481707]
+  [44.229852, -76.629158],
+  [44.237066, -76.812592],
+  [44.230088, -76.291707]
 ];
 
 let resultx = 0;
@@ -59,6 +59,8 @@ const Home: React.FC = () => {
     return null;
   }
 
+  
+
 
 
   return (
@@ -72,7 +74,7 @@ const Home: React.FC = () => {
       {coordinates.map((coordinate, index) => (
         <Marker key={index} position={[coordinate[0], coordinate[1]]}>
           <Popup>
-            This is a marker at [{coordinate[0]}, {coordinate[1]}].
+            This is a marker at [{coordinate[0]}, {coordinate[1]}, {index}] to go to.
           </Popup>
         </Marker>
         

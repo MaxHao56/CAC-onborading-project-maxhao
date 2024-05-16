@@ -20,6 +20,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { MainListItems,SecondaryListItems } from '../component/functional/dashboardlist/dashboradlist.tsx';
 
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -30,9 +31,19 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 
 
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 
+import FormGroup from '@mui/material/FormGroup';
 
+import FolderIcon from '@mui/icons-material/Folder';
+import DeleteIcon from '@mui/icons-material/Delete';
 
+const Demo = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+}));
 
 function Copyright(props: any) {
   return (
@@ -97,6 +108,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+interface Location {
+  streetname: string;
+  durationtime: number;
+  importance: number;
+}
+
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
@@ -106,14 +123,20 @@ export default function Pageview() {
     setOpen(!open);
   };
 
+
+  const [dense, setDense] = React.useState(false);
+
+
   const [locations, setLocations] = useState<Location[]>([])
 
   useEffect(() => {
-    fetch('http://your-django-backend-url/location-list/')
-        .then(response => response.json())
-        .then(data => setLocations(data))
-        .catch(error => console.error('Error fetching data:', error));
-}, []);
+    axios.get<Location[]>('http://127.0.0.1:8000/api/locations')
+      .then(response => {
+        setLocations(response.data);
+        console.log(response.data); // Logging data instead of locations
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
 
 
   return (
@@ -189,14 +212,37 @@ export default function Pageview() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          {/* {locations.map(location => (
-                        <tr key={location.streetname}>
-                            <td>{location.streetname}</td>
-                            <td>{location.durationtime}</td>
-                            <td>{location.importance}</td>
-                        </tr>
-                    ))} */}
-            
+          
+
+    {/* icon with the text*/}
+
+    <Grid item xs={12} md={6}>
+
+          <Demo>
+            <List dense={dense}>
+              {locations.map((l,index) => (
+                <ListItem
+                key={index}
+                  secondaryAction={
+                    <IconButton edge="end" aria-label="delete">
+                      <DeleteIcon />
+                    </IconButton>
+                  }
+                >
+                  <ListItemAvatar>
+                    <Avatar>
+                      <FolderIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={l.streetname}
+                  
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </Demo>
+        </Grid>
 
 
 

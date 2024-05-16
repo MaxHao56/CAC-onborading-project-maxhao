@@ -27,6 +27,8 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import axios from 'axios';
+import { useState } from 'react';
 
 
 
@@ -101,10 +103,19 @@ const defaultTheme = createTheme();
 
 export default function Tripcreation() {
 
+  const [streetname, setStreetname] = useState('');
+  const [durationtime, setDurationtime] = useState('');
+  const [importance, setImportance] = useState('');
+  // const durationTimeValue = durationtime ? parseInt(durationtime, 10) : 0;
+  // const importanceValue = importance ? parseInt(importance, 10) : 0;
+
 
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) =>{
     event.preventDefault();
+    
+
+    
     const mapdata = new FormData(event.currentTarget);
 
     const streetnumber  = mapdata.get('StreetNumber');
@@ -113,13 +124,16 @@ export default function Tripcreation() {
     const importance = mapdata.get('importance')
 
     const mapinfor = {
-      'street': `${streetname} ${streetnumber}`,
+      'streetname': `${streetnumber} ${streetname} `,
       'durationtime': durationtime,
-      'importance': importance
-
+      'importance': importance,
     }
 
-    console.log(mapinfor)
+    axios.post('http://127.0.0.1:8000/api/create-locations', mapinfor)
+    .then(response =>{
+      console.log(response)
+    })
+    .catch(error=>console.error('Error Fetching data', error))
   }
 
 
@@ -222,7 +236,7 @@ export default function Tripcreation() {
           <Typography component="h1" variant="h5">
             Trip-Creation-Form
           </Typography>
-          <Box component="form" noValidate  sx={{ mt: 3 }} onClick={handleSubmit}>
+          <Box component="form" noValidate  sx={{ mt: 3 }} onSubmit={handleSubmit}>
           {/* onSubmit={handleSubmit} */}
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -274,6 +288,7 @@ export default function Tripcreation() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+ 
               
             >
               Sumbit
